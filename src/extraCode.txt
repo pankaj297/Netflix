@@ -1,0 +1,413 @@
+// Dynamic Values using variable
+
+import React from "react";
+export const App = () => {
+  return (
+    <>
+      <NetflixSeries />
+      <NetflixSeries />
+      <NetflixSeries />
+      <NetflixSeries />
+    </>
+  );
+}
+
+export const NetflixSeries = () => {
+    //variables
+  const name = "Queen of Tears";
+  const rating = "8.2";
+  const summary = "Summary : A gripping tale of love, loss, and resilience set against the backdrop of a war-torn nation.";
+  return (
+    <>
+      <div>
+        <div>
+          <img src="images/qot.jpg" alt="qot-img" width="40%" height="49%" />
+        </div>
+        <h2>Name: {name} </h2>
+        <h3>Rating: {rating}</h3>
+        <p>
+          Summary : {summary}
+        </p>
+      </div>
+    </>
+  );
+}
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Dynamic Values using Expressions function call
+
+import React from "react";
+
+export const App = () => {
+  return (
+    <>
+      <NetflixSeries />
+      <NetflixSeries />
+      <NetflixSeries />
+      <NetflixSeries />
+    </>
+  );
+}
+
+
+export const NetflixSeries = () => {
+  const name = "Queen of Tears";
+  const rating = "8.2";
+  const summary = "A gripping tale of love, loss, and resilience set against the backdrop of a war-torn nation.";
+
+//function call
+  const returnGenre = () => {
+    const genres = "Drama";
+    return genres;
+    
+  }
+  return (
+    <>
+      <div>
+        <div>
+          <img src="images/qot.jpg" alt="qot-img" width="40%" height="49%" />
+        </div>
+        <h2>Name: {name} </h2>
+        <h3>Rating: {5 + 3.2}</h3>
+        <p>
+          Summary : {summary}
+        </p>
+        <p>Genre: { returnGenre()}</p>
+      </div>
+    </>
+  );
+}
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Conditional Values in Jsx
+import React from "react";
+
+export const App = () => {
+  return (
+    <>
+      <NetflixSeries />
+      <NetflixSeries />
+      <NetflixSeries />
+      <NetflixSeries />
+    </>
+  );
+}
+
+export const NetflixSeries = () => {
+  const name = "Queen of Tears";
+  const rating = "8.2";
+  const summary = "A gripping tale of love, loss, and resilience set against the backdrop of a war-torn nation.";
+
+  const returnGenre = () => {
+    const genres = "Drama";
+    return genres;
+
+  }
+
+  let age = 12;
+
+  // let canWatch = "Not Available";
+  // if (age >= 18) canWatch = "Watch Now";
+
+  const canWatch = () => {
+    if (age >= 18) return "Watch Now";
+    return "Not Available";
+  }
+
+  return (
+    <>
+      <div>
+        <div>
+          <img src="images/qot.jpg" alt="qot-img" width="40%" height="49%" />
+        </div>
+        <h2>Name: {name} </h2>
+        <h3>Rating: {5 + 3.2}</h3>
+        <p>Summary : {summary}</p>
+        <p>Genre: {returnGenre()}</p>
+        {/* <button> {age >= 18 ? "Watch Now" : "Not Available"} </button> */}
+        {/* <button>{canWatch}</button> */}
+        <button>{canWatch()}</button>
+      </div>
+    </>
+  );
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Practices Interview
+
+import React from "react"
+
+export const Practices = () => {
+    const students = ["hello", "hello2"];
+    return (
+      <>
+        {/* <p>{students.length && "No students found"}</p> */}
+        {/* 1st */}
+        {/* <p>{students.length === 0 && "No students found"}</p> */}
+        {/* 2nd */}
+        {/* <p>{!students.length && "No students found"}</p> */}
+        {/* 3rd */}
+        <p>{!Boolean(students.length) && "No students found"}</p>
+
+        <p>Number of students : {students.length}</p>
+      </>
+    );
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Import and Export in React Js #11
+1. Default Export and import
+2. Named Export and import
+3. Mixed Export and Import
+
+
+
+
+1. Default Export and import
+const NetflixSeries = () =>
+{
+   //code
+}
+export default NetflixSeries;  //in end of function components
+import NetflixSeries  from "./components/NetflixSeries"; 
+
+
+2. Named Export and import
+export const NetflixSeries = () =>
+{
+   //code
+}
+
+export const Footer = () =>
+{
+   //code
+}
+import {NetflixSeries, Footer} from "./components/NetflixSeries";
+
+3. Mixed Export and Import
+const NetflixSeries = () =>
+{
+   //code
+}
+export default NetflixSeries; 
+
+
+export const Footer = () =>
+{
+   //code
+}
+
+export const Header = () =>
+{
+   //code
+}
+
+import  NetflixSeries, {Footer , Header}  from "./components/NetflixSeries";
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+//#12 map method
+
+//Ex 1 : 
+
+import React from "react";
+import seriesData from "../api/seriesData.json";
+
+export const NetflixSeries = () => {
+  return (
+    <>
+    
+        <ul>
+          <li>
+            <div>
+              <img
+                src={seriesData[0].img_url}
+                alt="qot-img"
+                width="40%"
+                height="49%"
+              />
+            </div>
+            <h2>Name: {seriesData[0].name} </h2>
+            <h3>Rating: {seriesData[0].rating}</h3>
+            <p>Summary : {seriesData[0].description}</p>
+            <p>Genre: {seriesData[0].genre}</p>
+            <p>Cast : {seriesData[0].cast}</p>
+            <a href={seriesData[0].watch_url}></a>
+            <button>Watch Now</button>
+          </li>
+          {/* --------------------- */}
+          <li>
+            <div>
+              <img
+                src={seriesData[1].img_url}
+                alt="qot-img"
+                width="40%"
+                height="49%"
+              />
+            </div>
+            <h2>Name: {seriesData[1].name} </h2>
+            <h3>Rating: {seriesData[1].rating}</h3>
+            <p>Summary : {seriesData[1].description}</p>
+            <p>Genre: {seriesData[1].genre}</p>
+            <p>Cast : {seriesData[1].cast}</p>
+            <a href={seriesData[1].watch_url}></a>
+            <button>Watch Now</button>
+          </li>
+        </ul>
+    </>
+  );
+};
+
+
+//Ex 2 
+
+import React from "react";
+import seriesData from "../api/seriesData.json";
+
+export const NetflixSeries = () => {
+  return (
+    <>
+      <ul>
+              {seriesData.map((currElem) =>
+                <>
+                      <li>
+                          <div>
+                              <img
+                                  src={currElem.img_url}
+                                  alt="qot-img"
+                                  width="40%"
+                                  height="49%"
+                              />
+                          </div>
+                          <h2>Name: {currElem.name} </h2>
+                          <h3>Rating: {currElem.rating}</h3>
+                          <p>Summary : {currElem.description}</p>
+                          <p>Genre: {currElem.genre}</p>
+                          <p>Cast : {currElem.cast}</p>
+                          <a href={currElem.watch_url}></a>
+                          <button>Watch Now</button>
+                      </li>
+                  </>   
+              )}
+    
+        </ul>
+    </>
+  );
+};
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+//#13 Props in js
+
+
+//NetflixSeries file 
+
+import React from "react";
+import seriesData from "../api/seriesData.json";
+import { SeriesCard } from "./SeriesCard";
+
+export const NetflixSeries = () => {
+  return (
+    <>
+      <ul>
+        {seriesData.map((currElem) => {
+          return <SeriesCard key={currElem.id} data={currElem} />;
+        })}
+      </ul>
+    </>
+  );
+};
+
+
+//SeriesCard file
+
+export const SeriesCard = (props) => {
+    return (
+      <>
+        <li>
+          <div>
+            <img
+              src={props.data.img_url}
+              alt="qot-img"
+              width="40%"
+              height="49%"
+            />
+          </div>
+          <h2>Name: {props.data.name} </h2>
+          <h3>Rating: {props.data.rating}</h3>
+          <p>Summary : {props.data.description}</p>
+          <p>Genre: {props.data.genre}</p>
+          <p>Cast : {props.data.cast}</p>
+          <a href={props.data.watch_url}></a>
+          <button>Watch Now</button>
+        </li>
+      </>
+    );
+}
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+//#14 Destructuring in js
+
+//Ex - 1
+
+
+export const SeriesCard = (props) => {
+
+    const { data } = props;
+    return (
+      <>
+        <li>
+          <div>
+            <img
+              src={data.img_url}
+              alt="qot-img"
+              width="40%"
+              height="49%"
+            />
+          </div>
+          <h2>Name: {data.name} </h2>
+          <h3>Rating: {data.rating}</h3>
+          <p>Summary : {data.description}</p>
+          <p>Genre: {data.genre}</p>
+          <p>Cast : {data.cast}</p>
+          <a href={data.watch_url}></a>
+          <button>Watch Now</button>
+        </li>
+      </>
+    );
+}
+
+//Ex - 2
+
+export const SeriesCard = (props) => {
+
+    const { img_url, name, rating, description, genre, cast, watch_url } = props.data;
+    return (
+      <>
+        <li>
+          <div>
+            <img
+              src={img_url}
+              alt="qot-img"
+              width="40%"
+              height="49%"
+            />
+          </div>
+          <h2>Name: {name} </h2>
+          <h3>Rating: {rating}</h3>
+          <p>Summary : {description}</p>
+          <p>Genre: {genre}</p>
+          <p>Cast : {cast}</p>
+          <a href={watch_url}></a>
+          <button>Watch Now</button>
+        </li>
+      </>
+    );
+}
+
